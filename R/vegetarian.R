@@ -42,7 +42,6 @@ temp.sum
 bootstrap<-function(abundances,s.sizes=NULL,num.iter=100,func,func.arg="blank",sim.pop=FALSE,sim.par=FALSE){
 #func is the function (e.g. d)
 #arg is a list of the arguments the function needs (e.g. list(q=1,wts=FALSE) )
-require(stats)
 num.sites<-dim(abundances)[1]
 num.spec<-dim(abundances)[2]
 if(is.null(s.sizes)){s.sizes<-apply(abundances,1,sum)} 
@@ -57,8 +56,8 @@ boots[j,,]<-temp.boot
 }
 
 for(i in 1:num.iter){
-if(func.arg[1]=="blank"){simulated.param[i]<-do.call(what=func,arg=list(boots[,,i]))}
-if(func.arg[1]!="blank"){simulated.param[i]<-do.call(what=func,arg=c(abundances=list(boots[,,i]),func.arg))}
+if(func.arg[1]=="blank"){simulated.param[i]<-do.call(what=func,args=list(boots[,,i]))}
+if(func.arg[1]!="blank"){simulated.param[i]<-do.call(what=func,args=c(abundances=list(boots[,,i]),func.arg))}
 }
 
 
@@ -149,7 +148,7 @@ D.VALUE<-d(apply(normalize.rows(abundances)*w,2,sum),lev="alpha",q=q)
 
 if(boot==TRUE){
 func.arg<-list(wts=wts,q=q,lev=lev)
-boot.out<-do.call(what=bootstrap,arg=c(abundances=list(abundances),func=d,func.arg=list(func.arg),boot.arg))
+boot.out<-do.call(what=bootstrap,args=c(abundances=list(abundances),func=d,func.arg=list(func.arg),boot.arg))
 output<-list(D.Value=D.VALUE,StdErr=boot.out$StdErr)
 }
 
@@ -191,7 +190,7 @@ H.VALUE<-( (Da^(1-q) - 1)/(1-q) )
 
 if(boot==TRUE){
 func.arg<-list(wts=wts,q=q,lev=lev)
-boot.out<-do.call(what=bootstrap,arg=c(abundances=list(abundances),func=H,func.arg=list(func.arg),boot.arg))
+boot.out<-do.call(what=bootstrap,args=c(abundances=list(abundances),func=H,func.arg=list(func.arg),boot.arg))
 output<-list(H.Value=H.VALUE,StdErr=boot.out$StdErr)
 }
 
@@ -207,7 +206,7 @@ output
 M.homog<-function(abundances,abundances2=NULL,q=1,std=FALSE,boot=FALSE,boot.arg=list(s.sizes=NULL,num.iter=100)){
 #can be given as two vectors, or a single matrix with two rows
 if(is.data.frame(abundances)){abundances<-as.matrix(abundances)}
-if(is.data.frame(abundances2)){abundances2<-as.vector(abundances2)}
+if(is.data.frame(abundances2)&is.matrix(abundances)&&identical(colnames(abundances),colnames(abundances2))){abundances2<-as.matrix(abundances2)}
 
 if(!is.null(abundances2)){
 abundances<-rbind(abundances,abundances2)
@@ -222,7 +221,7 @@ if(std==TRUE){M<-(M-(1/N))/(1-(1/N))}
 
 if(boot==TRUE){
 func.arg<-list(q=q)
-boot.out<-do.call(what=bootstrap,arg=c(abundances=list(abundances),func=M.homog,func.arg=list(func.arg),boot.arg))
+boot.out<-do.call(what=bootstrap,args=c(abundances=list(abundances),func=M.homog,func.arg=list(func.arg),boot.arg))
 output<-list(M=M,StdErr=boot.out$StdErr)
 }
 if(boot==FALSE){output<-M}
@@ -254,7 +253,7 @@ HOMOG<-((1/Db) - (1/Dw))/(1 - (1/Dw))
 
 if(boot==TRUE){
 func.arg<-list(wts=wts)
-boot.out<-do.call(what=bootstrap,arg=c(abundances=list(abundances),func=Rel.homog,func.arg=list(func.arg),boot.arg))
+boot.out<-do.call(what=bootstrap,args=c(abundances=list(abundances),func=Rel.homog,func.arg=list(func.arg),boot.arg))
 output<-list(REL.HOMOG=HOMOG,StdErr=boot.out$StdErr)
 }
 
@@ -284,7 +283,7 @@ S<-(((1/Db)^(q-1) - (1/N)^(q-1))/(1 - (1/N)^(q-1)))
 
 if(boot==TRUE){
 func.arg<-list(q=q)
-boot.out<-do.call(what=bootstrap,arg=c(abundances=list(abundances),func=similarity,func.arg=list(func.arg),boot.arg))
+boot.out<-do.call(what=bootstrap,args=c(abundances=list(abundances),func=similarity,func.arg=list(func.arg),boot.arg))
 output<-list(Simlarity=S,StdErr=boot.out$StdErr)
 }
 
@@ -309,7 +308,7 @@ Tv<-(Db-1)/(N-1)
 
 if(boot==TRUE){
 func.arg<-list(q=q)
-boot.out<-do.call(what=bootstrap,arg=c(abundances=list(abundances),func=turnover,func.arg=list(func.arg),boot.arg))
+boot.out<-do.call(what=bootstrap,args=c(abundances=list(abundances),func=turnover,func.arg=list(func.arg),boot.arg))
 output<-list(Turnover=Tv,StdErr=boot.out$StdErr)
 }
 
@@ -354,7 +353,7 @@ for(j in 1:(i-k)){
 
 if(boot==FALSE){sim.matrix[i,j]<-similarity(scores[i,],scores[j,],q=q)}
 if(boot==TRUE){
-boot.out<-do.call(what=bootstrap,arg=c(abundances=list(rbind(scores[i,],scores[j,])),func=similarity,func.arg=list(func.arg),boot.arg))
+boot.out<-do.call(what=bootstrap,args=c(abundances=list(rbind(scores[i,],scores[j,])),func=similarity,func.arg=list(func.arg),boot.arg))
 sim.matrix[i,j]<-boot.out$StdErr
 }
 
@@ -368,7 +367,7 @@ for(j in 1:num.sites){
 
 if(boot==FALSE){sim.matrix[i,j]<-similarity(scores[i,],scores[j,],q=q)}
 if(boot==TRUE){
-boot.out<-do.call(what=bootstrap,arg=c(abundances=list(rbind(scores[i,],scores[j,])),func=similarity,func.arg=list(func.arg),boot.arg))
+boot.out<-do.call(what=bootstrap,args=c(abundances=list(rbind(scores[i,],scores[j,])),func=similarity,func.arg=list(func.arg),boot.arg))
 sim.matrix[i,j]<-boot.out$StdErr
 }
 
@@ -410,7 +409,7 @@ for(j in 1:(i-1)){
 
 if(boot==FALSE){temp.sim<-similarity(scores[i,],scores[j,],q=q)}
 if(boot==TRUE){
-boot.out<-do.call(what=bootstrap,arg=c(abundances=list(rbind(scores[i,],scores[j,])),func=similarity,func.arg=list(func.arg),boot.arg))
+boot.out<-do.call(what=bootstrap,args=c(abundances=list(rbind(scores[i,],scores[j,])),func=similarity,func.arg=list(func.arg),boot.arg))
 temp.sim<-boot.out$StdErr
 }
 

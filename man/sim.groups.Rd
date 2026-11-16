@@ -4,7 +4,8 @@
 \description{Given two groups with multiple samples (e.g. sites, plots) the sim.groups function calculates all possible pairwise combinations of within- and between-group comparisons.
 }
 \usage{
-sim.groups(abundances1, abundances2, q = 1, labels = FALSE, boot = FALSE, boot.arg = list(s.sizes = NULL, num.iter = 100))
+sim.groups(abundances1, abundances2, q = 1, labels = FALSE, boot = FALSE,
+  boot.arg = list(s.sizes = NULL, num.iter = 100))
 }
 \arguments{
   \item{abundances1}{Community data as a matrix where columns are individual species and rows are sites or a vector of different species within a site.  Matrix and vector elements are abundance data (e.g. counts, percent cover estimates).}
@@ -24,8 +25,6 @@ sim.groups(abundances1, abundances2, q = 1, labels = FALSE, boot = FALSE, boot.a
 }
 \references{Jost, L. 2007. Partitioning diversity into independent alpha and beta components. Ecology 88(10):  2427-2439.}
 \author{Noah Charney, Sydne Record}
-\note{
-}
 \seealso{\code{\link{similarity}}, \code{\link{sim.table}}
 }
 \examples{

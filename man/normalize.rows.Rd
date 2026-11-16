@@ -23,8 +23,6 @@ Jost, L. 2007. Partitioning diversity into independent alpha and beta components
 Hill, M. 1973. Diversity and evenness: A unifying notation and its consequences. Ecology 54: 427-432.
 }
 \author{Noah Charney, Sydne Record}
-\note{
-}
 \seealso{\code{\link{d}}
 }
 \examples{

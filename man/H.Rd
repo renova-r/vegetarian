@@ -5,7 +5,8 @@
  Jost describes the conversion of common indices to 'true' or 'standard' diversities (see Table 1 Jost (2006)).  The H function calculates the alpha, beta, and gamma 'standard diversity indices.'  Specification of different arguments allows for the calculation of species richness, Shannon entropy, Simpson concentration, Gini-Simpson Index, HCDT entropy, and Renyi entropy.
 }
 \usage{
-H(abundances, lev = "alpha", wts = FALSE, q = 1, HCDT = FALSE, gini = FALSE, boot = FALSE, boot.arg = list(s.sizes = NULL, num.iter = 100))
+H(abundances, lev = "alpha", wts = FALSE, q = 1, HCDT = FALSE, gini = FALSE,
+  boot = FALSE, boot.arg = list(s.sizes = NULL, num.iter = 100))
 }
 
 \arguments{
@@ -38,8 +39,6 @@ Jost, L. 2007. Partitioning diversity into independent alpha and beta components
 Hill, M. 1973. Diversity and evenness: A unifying notation and its consequences. Ecology 54: 427-432.
 }
 \author{Noah Charney, Sydne Record}
-\note{
-}
 \seealso{ 
 \code{\link{d}}
 \code{\link{bootstrap}}

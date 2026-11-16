@@ -4,7 +4,8 @@
 \description{
 Diversity measure provided in the vegetarian library call bootstrap to estimate standard error for the parameter outputs.  Bootstrap generates simulated populations from a multinormal distribution centered around the community matrix provided and applies the function of interest to the simulated data.  Requires stats package.}
 \usage{
-bootstrap(abundances, s.sizes = NULL, num.iter = 100, func, func.arg = "blank", sim.pop = FALSE, sim.par = FALSE)
+bootstrap(abundances, s.sizes = NULL, num.iter = 100, func, func.arg = "blank",
+  sim.pop = FALSE, sim.par = FALSE)
 }
 \arguments{
   \item{abundances}{	Community data as a matrix where columns are individual species and rows are sites.  Matrix elements are abundance data (e.g. counts, percent cover estimates).  }
@@ -31,7 +32,6 @@ While this function is called internally by other functions in the vegetarian li
 Chao, A, L. Jost, S. C. Chiang, Y.-H Jiang, R. L. Chazdon.  2008.  A two-stage probabilistic approach to multiple-community similarity indices.  Biometrics 64: 1178-1186.
 }
 \author{Noah Charney, Sydne Record}
-\note{}
 \seealso{\code{\link{d}}}
 \examples{
 data(simesants)

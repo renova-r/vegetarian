@@ -20,7 +20,5 @@ p.q.sum(p, q = 1)
 }
 \references{Jost, L. 2007. Partitioning diversity into independent alpha and beta components. Ecology 88(10):  2427-2439.}
 \author{Noah Charney, Sydne Record}
-\note{
-}
 \seealso{\code{\link{d}}}
 \examples{}

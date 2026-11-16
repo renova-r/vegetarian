@@ -1,11 +1,16 @@
 Package: vegetarian
 Type: Package
 Title: Jost Diversity Measures for Community Data
-Version: 1.2
-Date: 2009-07-20
-Author: Noah Charney, Sydne Record
+Version: 1.2.9001
 Maintainer: Noah Charney <noah@alumni.amherst.edu>
-Description: This package computes diversity for community data sets
+Authors@R: c(person(given = "Noah",
+                    family = "Charney",
+                    role = c("aut", "cre"),
+                    email = "noah@alumni.amherst.edu"),
+             person(given = "Sydne",
+                    family = "Record",
+                    role = "aut"))
+Description: Computes diversity for community data sets
         using the methods outlined by Jost (2006, 2007). While there
         are differing opinions on the ideal way to calculate diversity
         (e.g. Magurran 2004), this method offers the advantage of
@@ -22,6 +27,7 @@ Description: This package computes diversity for community data sets
         tables of all pairwise comparisons possible, and for grouped
         samples sim.groups calculates pairwise combinations of within-
         and between-group comparisons.
+    Compatibility updates by Renova.
 License: GPL-2
 LazyLoad: yes
 Depends: stats

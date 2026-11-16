@@ -5,7 +5,8 @@
 Provides a comparison between communities with unequal weights based on the numbers equivalent of the Shannon beta diversity (Jost 2007).  When community weights are not equal, the Shannon measures of diversity where q=1, are still valid and can be used to calculate a relative measure of homogeneity derived from MacArthur's homogeneity measure (Equation 22 from Jost 2007).
 }
 \usage{
-Rel.homog(abundances, abundances2 = NULL, wts = FALSE, boot = FALSE, boot.arg = list(s.sizes = NULL, num.iter = 100))
+Rel.homog(abundances, abundances2 = NULL, wts = FALSE, boot = FALSE,
+  boot.arg = list(s.sizes = NULL, num.iter = 100))
 }
 \arguments{
   \item{abundances}{Community data as a matrix where columns are individual species and rows are sites or a vector of different species within a site.  Matrix and vector elements are abundance data (e.g. counts, percent cover estimates).}
@@ -21,8 +22,6 @@ Rel.homog(abundances, abundances2 = NULL, wts = FALSE, boot = FALSE, boot.arg = 
 }
 \references{Jost, L. 2007. Partitioning diversity into independent alpha and beta components. Ecology 88(10):  2427-2439.}
 \author{Noah Charney, Sydne Record}
-\note{
-}
 \seealso{
 \code{\link{M.homog}}, \code{\link{similarity}}, \code{\link{turnover}}.
 }

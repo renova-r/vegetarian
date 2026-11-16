@@ -3,7 +3,8 @@
 \title{Similarity Summary Table}
 \description{Creates a summary table of community overlap for all possible pairwise combinations of samples (e.g. sites, plots) using the \code{similarity} function.}
 \usage{
-similarity(abundances, abundances2 = NULL, q = 1, boot = FALSE, boot.arg = list(s.sizes = NULL, num.iter = 100))
+similarity(abundances, abundances2 = NULL, q = 1, boot = FALSE,
+  boot.arg = list(s.sizes = NULL, num.iter = 100))
 }
 \arguments{
   \item{abundances}{Community data as a matrix where columns are individual species and rows are sites. Matrix elements are abundance data (e.g. counts, percent cover estimates).  May be given as a vector with abundances2 as a vector for a second community.}
@@ -22,8 +23,6 @@ similarity(abundances, abundances2 = NULL, q = 1, boot = FALSE, boot.arg = list(
 }
 \references{Jost, L. 2007. Partitioning diversity into independent alpha and beta components. Ecology 88(10): 2427-2439.}
 \author{Noah Charney, Sydne Record}
-\note{
-}
 \seealso{\code{\link{sim.table}}, \code{\link{sim.groups}}, \code{\link{bootstrap}}}
 \examples{
 data(simesants)
